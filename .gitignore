@@ -1,0 +1,28 @@
+#	UNTRACKED FILES:
+#	Extensions
+*.a
+*.d
+*.exe
+*.gch
+*.o
+*.out
+*.pdf
+*.rar
+*.txt
+
+#	Files
+author
+
+#	Maskes
+.*
+*main.*
+
+#	Folders
+.idea/
+.vscode/
+
+
+#	TRACKED FILES
+!.gitignore
+!test.txt
+!main.*
