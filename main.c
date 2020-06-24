@@ -55,17 +55,23 @@ int		main(int argc, char **argv)
 
 	ft_putstr("---------- RESULT ----------\n");
 	int i = 1;
-	while (gnl_res = get_next_line(fd, &line))
-	{
-		ft_putstr("   N : ");
-		ft_putnbr(i++);
-		ft_putstr("\n GNL : ");
-		ft_putnbr(gnl_res);
-		ft_putstr("\nLINE : [");
-		ft_putstr(line);
-		ft_putstr("]\n\n");
-	}
+	gnl_res = get_next_line(fd, &line);
+	ft_putstr("   N : ");
+	ft_putnbr(i++);
+	ft_putstr("\n GNL : ");
+	ft_putnbr(gnl_res);
+	ft_putstr("\nLINE : [");
+	ft_putstr(line);
+	ft_putstr("]\n\n");
 	
+	gnl_res = get_next_line(fd, &line);
+	ft_putstr("   N : ");
+	ft_putnbr(i++);
+	ft_putstr("\n GNL : ");
+	ft_putnbr(gnl_res);
+	ft_putstr("\nLINE : [");
+	ft_putstr(line);
+	ft_putstr("]\n\n");
 
 	ft_putstr("\n----------- TEST -----------\n-1 : ERROR\n 0 : EOF\n 1 : SUCCESS!\n");
 }

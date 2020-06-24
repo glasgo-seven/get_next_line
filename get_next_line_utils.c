@@ -6,11 +6,18 @@
 /*   By: sanakin <sanakin@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/14 15:05:56 by sanakin           #+#    #+#             */
-/*   Updated: 2020/06/14 16:13:37 by sanakin          ###   ########.fr       */
+/*   Updated: 2020/06/22 17:09:15 by sanakin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+int		ft_abs(int nbr)
+{
+	if (nbr < 0)
+		return (-nbr);
+	return (nbr);
+}
 
 int		ft_strlen(char *str)
 {

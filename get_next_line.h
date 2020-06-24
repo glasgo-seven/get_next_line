@@ -6,7 +6,7 @@
 /*   By: sanakin <sanakin@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/06 20:40:34 by sanakin           #+#    #+#             */
-/*   Updated: 2020/06/14 16:14:07 by sanakin          ###   ########.fr       */
+/*   Updated: 2020/06/22 17:10:58 by sanakin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 
 # define BUFFER_SIZE 64
 
+int		ft_abs(int nbr);
 int		ft_strlen(char *str);
 int		ft_strlen_plus(char *str);
 void	*ft_realloc(char *arr, size_t size);
