@@ -6,71 +6,67 @@
 /*   By: sanakin <sanakin@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/14 14:16:07 by sanakin           #+#    #+#             */
-/*   Updated: 2020/06/22 17:12:08 by sanakin          ###   ########.fr       */
+/*   Updated: 2020/06/25 14:33:54 by sanakin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include "main.h"
 
-static size_t	get_line_status(char *line)
+static size_t	ft_abs(size_f nbr)
+{
+	return (nbr < 0 ? -nbr : nbr);
+}
+
+static size_f	get_status(char *str)
 {
 	size_t	i;
 
 	i = 0;
-	while (*(line + i) != '\0' && *(line + i) != '\n')
+	while (str[i] != '\0' && str[i] != '\n')
 		i++;
-	if (i != BUFFER_SIZE + 1)
-	{
-		if (*(line + i) == '\0')
-			return (-i);
-		else if (*(line + i) == '\n')
-			return (i);
-	}
+	if (str[i] == '\0' && i != ft_strlen(str))
+		return (-i);
+	if (str[i] == '\n')
+		return (i);
 	return (0);
 }
 
-static int		set_line(char **line, char *buff)
+static char		*get_leftovers(t_fd_list *fd_list, int fd)
 {
-	size_t	i;
-	size_t	len_buff;
-	size_t	len_line;
+	t_fd_list	*lst;
 
-	i = 0;
-	len_buff = ft_strlen_plus(buff);
-	len_line = ft_strlen(*line);
-	*line = (char*)ft_realloc(*line, len_line + len_buff);
-	while (i < len_buff)
-	{
-		*(*line + i + len_line) = buff[i];
-		i++;
-	}
-	return (i);
+	lst = fd_list;
+	while (lst)
+		if (lst->fd == fd)
+			return (lst->leftovers);
+		else
+			lst = lst->next;
+	return (NULL);
 }
 
 int				get_next_line(int fd, char **line)
 {
-	int			ret;
-	char		buff[BUFFER_SIZE + 1];
-	int			status;
-	int			i;
+	static t_fd_list	*fd_list;
+	char				buff[BUFFER_SIZE + 1];
+	char				*new_line;
+	int					ret;
+	size_f				status;
 
-	if (!line || BUFFER_SIZE < 1 || fd < 0 || read(fd, buff, 0) < 0)
+	if (BUFFER_SIZE < 1 || !line || fd < 0 || read(fd, buff, 0) < 0)
 		return (-1);
-	ret = 0;
+	if (!fd_list)
+		fd_list = ft_fd_lstnew(fd);
+	else if (!find_fd(fd_list, fd))
+		ft_fd_lstadd_back(&fd_list, ft_fd_lstnew(fd));
 	status = 0;
-	buff[0] = '\0';
-	*line = (char*)malloc(1);
-	*line[0] = '\0';
-	i = 0;
-	while ((ret = read(fd, buff, BUFFER_SIZE)))
+	while (status == 0)
 	{
+		ret = read(fd, buff, BUFFER_SIZE);
 		buff[ret] = '\0';
-		i = set_line(line, buff);
-		status = get_line_status(buff);
+		status = get_status(buff);
+		new_line = ft_strjoin_len(new_line, buff, ft_abs(status));
 	}
-	fd = fd - abs(status) + i;
-	if (status < 0)
-		return (0);
-	return (1);
+	*line = new_line;
+	free(new_line);
+	return (status < 0 ? 0 : 1);
 }

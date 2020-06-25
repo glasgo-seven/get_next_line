@@ -38,40 +38,30 @@ int		main(int argc, char **argv)
 	int		fd;
 	char	*line;
 	int		gnl_res;
+	char	*file;
 
 	if (argc == 1)
 	{
-		ft_putstr("=!= NO FILE PASSED =!=");
-		return (-1);
+		//ft_putstr("=!= NO FILE PASSED =!=");
+		//return (-1);
+		file = argv[0];
 	}
 
 	ft_putstr("\n----------- MAIN -----------\n= OPENNING FILE [");
-	ft_putstr(argv[1]);
+	ft_putstr(file);
 	ft_putstr("] =\n");
-	fd = open(argv[1], O_RDONLY);
-
-	//ft_putstr("\n= CALLING GNL =\n");
-	//gnl_res = get_next_line(fd, &line);
+	fd = open(file, O_RDONLY);
 
 	ft_putstr("---------- RESULT ----------\n");
-	int i = 1;
-	gnl_res = get_next_line(fd, &line);
-	ft_putstr("   N : ");
-	ft_putnbr(i++);
-	ft_putstr("\n GNL : ");
-	ft_putnbr(gnl_res);
-	ft_putstr("\nLINE : [");
-	ft_putstr(line);
-	ft_putstr("]\n\n");
-	
-	gnl_res = get_next_line(fd, &line);
-	ft_putstr("   N : ");
-	ft_putnbr(i++);
-	ft_putstr("\n GNL : ");
-	ft_putnbr(gnl_res);
-	ft_putstr("\nLINE : [");
-	ft_putstr(line);
-	ft_putstr("]\n\n");
+	while (1 < 2)
+	{
+		gnl_res = get_next_line(fd, &line);
+		ft_putstr("\n GNL : ");
+		ft_putnbr(gnl_res);
+		ft_putstr("\nLINE : [");
+		ft_putstr(line);
+		ft_putstr("]\n\n");
+	}
 
 	ft_putstr("\n----------- TEST -----------\n-1 : ERROR\n 0 : EOF\n 1 : SUCCESS!\n");
 }
