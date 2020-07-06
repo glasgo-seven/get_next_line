@@ -6,7 +6,7 @@
 /*   By: sanakin <sanakin@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/06 20:40:34 by sanakin           #+#    #+#             */
-/*   Updated: 2020/06/25 14:40:50 by sanakin          ###   ########.fr       */
+/*   Updated: 2020/07/06 17:52:12 by sanakin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,15 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 
-# define BUFFER_SIZE 64
+# define BUFFER_SIZE 1
 
 typedef long long int size_f;
 
-typedef struct			s_fd_list
-{
-	int					fd;
-	char				*leftovers;
-	struct s_fd_list	*next;
-}						t_fd_list;
-
-int			find_fd(t_fd_list *fd_list, int fd);
-t_fd_list	*ft_fd_lstnew(int fd);
-void		ft_fd_lstadd_back(t_fd_list **lst, t_fd_list *new);
-
-size_t		ft_strlen(const char *s);
+size_t		ft_abs(size_f nbr);
+size_t		ft_strlen(char *str);
+char		*ft_strdup(const char *s);
 char		*ft_strjoin_len(char const *s1, char const *s2, size_t len);
+char		*ft_substr(char const *s, unsigned int start, size_t len);
 
 int			get_next_line(int fd, char **line);
 
