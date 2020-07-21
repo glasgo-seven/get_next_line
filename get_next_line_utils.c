@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include "main.h"
 
 size_t		ft_abs(size_f nbr)
 {
