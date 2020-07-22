@@ -53,56 +53,25 @@ char		*ft_strjoin_len(char const *s1, char const *s2, size_t len)
 
 	if (s2 == NULL)
 		return (NULL);
-/*
-	ft_putstr("\n\nLINE_LEN=");
-	ft_putnbr(ft_strlen((char*)s1));
-	ft_putchar('\n');
-*/
 	joined = (char*)malloc((ft_strlen((char*)s1) + len + 1) * sizeof(char));
 	if (joined == NULL)
 		return (NULL);
 	j_i = 0;
 	s_i = 0;
-/*
-	ft_putstr("\n\n\[ s1 ]");
-*/
 	while (s1[s_i] != '\0')
 	{
-/*
-		ft_putstr("\n\nj=");
-		ft_putnbr(j_i);
-		ft_putstr("\ns=");
-		ft_putnbr(s_i);
-		ft_putstr("\nchar=");
-		ft_putchar(*(s1 + s_i));
-*/
 		*(joined + j_i) = *(s1 + s_i);
 		j_i++;
 		s_i++;
 	}
 	s_i = 0;
-/*
-	ft_putstr("\n\n[ s2 ]");
-*/
 	while (s2 && s_i < len)
 	{
-/*
-		ft_putstr("\n\nj=");
-		ft_putnbr(j_i);
-		ft_putstr("\ns=");
-		ft_putnbr(s_i);
-		ft_putstr("\nchar=");
-		ft_putchar(*(s2 + s_i));
-*/
 		*(joined + j_i) = *(s2 + s_i);
 		j_i++;
 		s_i++;
 	}
 	*(joined + j_i) = '\0';
-/*
-	ft_putstr("\n\njoin=");
-	ft_putstr(joined);
-*/
 	return (joined);
 }
 
