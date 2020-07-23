@@ -19,13 +19,11 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 
-# define BUFFER_SIZE 10000000
+typedef	long long int	t_size_f;
 
-typedef long long int size_f;
-
-size_t		ft_abs(size_f nbr);
-size_t		ft_strlen(char *str);
-char		*ft_strdup(const char *s);
+size_t		f_abs(t_size_f nbr);
+size_t		ft_strlen(const char *str);
+int			ft_free(void **obj);
 char		*ft_strjoin_len(char const *s1, char const *s2, size_t len);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 

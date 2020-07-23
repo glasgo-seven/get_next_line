@@ -12,37 +12,31 @@
 
 #include "get_next_line.h"
 
-size_t		ft_abs(size_f nbr)
+size_t		f_abs(t_size_f nbr)
 {
 	return (nbr < 0 ? -nbr : nbr);
 }
 
-size_t		ft_strlen(char *str)
+size_t		ft_strlen(const char *str)
 {
 	size_t	i;
 
+	if (str == NULL)
+		return (0);
 	i = 0;
 	while (str[i] != '\0')
 		i++;
 	return (i);
 }
 
-char		*ft_strdup(const char *s)
+int			ft_free(void **obj)
 {
-	char	*n_s;
-	size_t	i;
-
-	n_s = (char*)malloc(sizeof(*s) * (ft_strlen((char*)s) + 1));
-	if (n_s == NULL)
-		return (NULL);
-	i = 0;
-	while (*(s + i) != '\0')
+	if (obj)
 	{
-		*(n_s + i) = *(s + i);
-		i++;
+		free(*obj);
+		*obj = NULL;
 	}
-	*(n_s + i) = '\0';
-	return (n_s);
+	return (0);
 }
 
 char		*ft_strjoin_len(char const *s1, char const *s2, size_t len)
@@ -53,23 +47,22 @@ char		*ft_strjoin_len(char const *s1, char const *s2, size_t len)
 
 	if (s2 == NULL)
 		return (NULL);
-	joined = (char*)malloc((ft_strlen((char*)s1) + len + 1) * sizeof(char));
-	if (joined == NULL)
+	if (s1 == NULL)
+		return (ft_substr(s2, 0, len));
+	if (!(joined = (char*)malloc((ft_strlen(s1) + len + 1) * sizeof(char*))))
 		return (NULL);
 	j_i = 0;
 	s_i = 0;
 	while (s1[s_i] != '\0')
 	{
-		*(joined + j_i) = *(s1 + s_i);
+		*(joined + j_i) = *(s1 + s_i++);
 		j_i++;
-		s_i++;
 	}
 	s_i = 0;
 	while (s2 && s_i < len)
 	{
-		*(joined + j_i) = *(s2 + s_i);
+		*(joined + j_i) = *(s2 + s_i++);
 		j_i++;
-		s_i++;
 	}
 	*(joined + j_i) = '\0';
 	return (joined);
